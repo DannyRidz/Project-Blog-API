@@ -91,3 +91,5 @@ The login endpoint returns a JSON Web Token, or JWT. The admin frontend sends th
 ```text
 Authorization: Bearer <token>
 ```
+
+Public users can read published posts and submit comments without logging in. Only authenticated authors can create, edit, publish, unpublish, or delete posts and manage comments.
