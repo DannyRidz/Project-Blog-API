@@ -77,6 +77,30 @@ postCommentsRouter.post("/:postId/comments", async (req, res) => {
 
 adminCommentsRouter.use(requireAuthor);
 
+adminCommentsRouter.get("/", async (req, res) => {
+  const postId = Number(req.query.postId);
+
+  if (!Number.isSafeInteger(postId) || postId < 1) {
+    return res.status(400).json({ error: "Invalid post ID" });
+  }
+
+  const post = await prisma.post.findFirst({
+    where: { id: postId, authorId: req.user.id },
+    select: { id: true },
+  });
+
+  if (!post) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+
+  const comments = await prisma.comment.findMany({
+    where: { postId },
+    orderBy: { createdAt: "asc" },
+  });
+
+  res.json(comments);
+});
+
 adminCommentsRouter.put("/:commentId", async (req, res) => {
   const id = getId(req, res, "commentId");
   if (id === null) return;

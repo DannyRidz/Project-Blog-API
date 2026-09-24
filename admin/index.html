@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Admin</title>
+  </head>
+  <body>
+    <header>
+      <h1>Blog Admin</h1>
+      <p>Write and manage your posts</p>
+    </header>
+
+    <main>
+      <section id="login-panel" class="card">
+        <h2>Author login</h2>
+        <form id="login-form">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+
+          <button type="submit">Log in</button>
+        </form>
+        <p id="login-status" role="status"></p>
+      </section>
+
+      <section id="dashboard" hidden>
+        <div class="dashboard-heading">
+          <h2>Dashboard</h2>
+          <button id="logout-button" type="button">Log out</button>
+        </div>
+        <p id="status" role="status"></p>
+
+        <div class="columns">
+          <section class="card">
+            <h3>Posts</h3>
+            <ul id="posts-list"></ul>
+          </section>
+
+          <section class="card">
+            <h3 id="form-heading">New post</h3>
+            <form id="post-form">
+              <label for="post-title">Title</label>
+              <input id="post-title" name="title" required />
+
+              <label for="post-content">Content</label>
+              <textarea
+                id="post-content"
+                name="content"
+                rows="10"
+                required
+              ></textarea>
+
+              <button id="save-button" type="submit">Create post</button>
+              <button id="cancel-button" type="button">Cancel edit</button>
+            </form>
+          </section>
+        </div>
+
+        <section id="comments-panel" class="card" hidden>
+          <h3 id="comments-heading">Comments</h3>
+          <ul id="comments-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

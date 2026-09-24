@@ -83,6 +83,7 @@ A comment belongs to one post.
 
 - `PUT /api/comments/:commentId`: Edit a comment
 - `DELETE /api/comments/:commentId`: Delete a comment
+- `GET /api/comments?postId=:postId`: Retrieve comments for an authored post
 
 ## Authentication rules
 

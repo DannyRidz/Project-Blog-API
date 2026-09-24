@@ -105,6 +105,12 @@ test("blog API flow", async () => {
 
     assert.equal(createdComment.status, 201);
     const commentId = createdComment.body.id;
+    const adminComments = await request(`/api/comments?postId=${postId}`, {
+      headers: authHeaders,
+    });
+
+    assert.equal(adminComments.status, 200);
+    assert.ok(adminComments.body.some((comment) => comment.id === commentId));
 
     const comments = await request(`/api/posts/${postId}/comments`);
     assert.equal(comments.status, 200);
